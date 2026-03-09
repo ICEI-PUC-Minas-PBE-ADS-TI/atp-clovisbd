@@ -414,7 +414,9 @@
     .card--adamed     .resource-card__header { background: linear-gradient(135deg, #003B71 0%, #005099 100%); }
     .card--enamed     .resource-card__header { background: linear-gradient(135deg, #1A5276 0%, #2E86C1 100%); }
     .card--simulador  .resource-card__header { background: linear-gradient(135deg, #145A32 0%, #1E8449 100%); }
+    .card--adamed2     .resource-card__header { background: linear-gradient(135deg, #003B71 0%, #005099 100%); }
 
+    .card--adamed2    .resource-card__header::before { background: var(--white); }
     .card--adamed    .resource-card__header::before { background: var(--white); }
     .card--enamed    .resource-card__header::before { background: var(--gold); }
     .card--simulador .resource-card__header::before { background: var(--white); }
@@ -483,6 +485,7 @@
     .card--adamed    .resource-card__features li i { color: var(--blue-mid); }
     .card--enamed    .resource-card__features li i { color: #2E86C1; }
     .card--simulador .resource-card__features li i { color: #1E8449; }
+    .card--adamed2    .resource-card__features li i { color: var(--blue-mid); }
 
     .resource-card__footer {
       padding: 0 28px 28px;
@@ -505,10 +508,12 @@
       border: none;
       cursor: pointer;
     }
+    .card--adamed2    .resource-card__btn { background: var(--blue-dark); }
     .card--adamed    .resource-card__btn { background: var(--blue-dark); }
     .card--enamed    .resource-card__btn { background: #2E86C1; }
     .card--simulador .resource-card__btn { background: #1E8449; }
 
+    .card--adamed2    .resource-card__btn:hover { background: var(--blue-light); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,59,113,.35); }
     .card--adamed    .resource-card__btn:hover { background: var(--blue-light); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,59,113,.35); }
     .card--enamed    .resource-card__btn:hover { background: #1A5276; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(46,134,193,.35); }
     .card--simulador .resource-card__btn:hover { background: #145A32; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(30,132,73,.35); }
@@ -1034,6 +1039,43 @@
 
       <div class="resources-grid">
 
+
+        <!-- CARD 0 — ADAMED2 -->
+        <article class="resource-card card--adamed fade-up">
+          <div class="resource-card__header">
+            <div class="resource-card__icon-wrap">
+              <i class="fa-solid fa-chart-pie"></i>
+            </div>
+            <span class="resource-card__tag">Dashboard · ADAMED</span>
+            <h3 class="resource-card__title">ADAMED 2025 BETIM</h3>
+          </div>
+          <div class="resource-card__body">
+            <p class="resource-card__desc">
+              Dashboard interativo com indicadores de desempenho acadêmico e análises estatísticas
+              do programa ADAMED para o curso de medicina Betim.
+            </p>
+            <ul class="resource-card__features">
+              <li><i class="fa-solid fa-circle-check"></i> Indicadores de desempenho acadêmico</li>
+              <li><i class="fa-solid fa-circle-check"></i> Análises comparativas por turma</li>
+              <li><i class="fa-solid fa-circle-check"></i> Visualizações interativas Power BI</li>
+              <li><i class="fa-solid fa-circle-check"></i> Dados atualizados em 2025</li>
+            </ul>
+          </div>
+          <div class="resource-card__footer">
+            <a
+              href="https://klebersouza.github.io/med-pbe-enamed-2025/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="resource-card__btn"
+            >
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              Acessar Dashboard
+            </a>
+          </div>
+        </article>
+
+
+
         <!-- CARD 1 — ADAMED -->
         <article class="resource-card card--adamed fade-up">
           <div class="resource-card__header">
@@ -1220,6 +1262,11 @@
         <a class="quick-link" href="https://klebersouza.github.io/microdados_enamed_2025/" target="_blank" rel="noopener">
           <div class="quick-link__icon"><i class="fa-solid fa-microscope"></i></div>
           <span class="quick-link__label">ENAMED 2025</span>
+        </a>
+
+        <a class="quick-link" href="https://klebersouza.github.io/med-pbe-enamed-2025/" target="_blank" rel="noopener">
+          <div class="quick-link__icon"><i class="fa-solid fa-microscope"></i></div>
+          <span class="quick-link__label">ADAMED 2025</span>
         </a>
         <a class="quick-link" href="https://app.powerbi.com/view?r=eyJrIjoiNGYxYjA5MjYtMjVhZi00NDIwLWE5MjItOTIwNDRiMDA0NzhjIiwidCI6IjE0Y2JkNWE3LWVjOTQtNDZiYS1iMzE0LWNjMGZjOTcyYTE2MSIsImMiOjh9" target="_blank" rel="noopener">
           <div class="quick-link__icon"><i class="fa-solid fa-flask-vial"></i></div>
