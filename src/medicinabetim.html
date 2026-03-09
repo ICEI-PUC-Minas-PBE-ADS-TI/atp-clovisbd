@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Medicina PUC Minas – Betim</title>
+  <meta name="description" content="Página inicial do Curso de Medicina da PUC Minas – Unidade Betim. Acesse recursos acadêmicos, dashboards e ferramentas de estudo." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    /* ======================================================
+       RESET & BASE
+    ====================================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-dark:   #003B71;   /* Pantone 302 C – azul PUC Minas */
+      --blue-mid:    #005099;
+      --blue-light:  #0070C0;
+      --gold:        #F5A623;
+      --gold-dark:   #D48A10;
+      --white:       #FFFFFF;
+      --off-white:   #F4F6FA;
+      --gray-light:  #E8ECF2;
+      --gray-mid:    #8A97AA;
+      --gray-dark:   #2D3748;
+      --text-body:   #3A4557;
+      --red-med:     #C0392B;
+      --green-med:   #27AE60;
+
+      --shadow-sm:   0 2px 8px rgba(0,59,113,.10);
+      --shadow-md:   0 6px 24px rgba(0,59,113,.15);
+      --shadow-lg:   0 12px 40px rgba(0,59,113,.20);
+
+      --radius-sm:   8px;
+      --radius-md:   14px;
+      --radius-lg:   22px;
+
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body:    'Open Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text-body);
+      background-color: var(--off-white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ======================================================
+       TOP BAR
+    ====================================================== */
+    .topbar {
+      background-color: var(--blue-dark);
+      color: rgba(255,255,255,.75);
+      font-family: var(--font-heading);
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      padding: 6px 0;
+    }
+    .topbar__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .topbar__links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .topbar__links a {
+      color: rgba(255,255,255,.75);
+      transition: color .2s;
+    }
+    .topbar__links a:hover { color: var(--gold); }
+    .topbar__right { display: flex; align-items: center; gap: 12px; }
+    .topbar__badge {
+      background: var(--gold);
+      color: var(--blue-dark);
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: .68rem;
+    }
+
+    /* ======================================================
+       HEADER / NAVBAR
+    ====================================================== */
+    .header {
+      background: var(--white);
+      box-shadow: 0 2px 12px rgba(0,59,113,.12);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .header__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      gap: 16px;
+    }
+    .header__brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+    .header__logo-img {
+      height: 52px;
+      width: auto;
+    }
+    .header__brand-text { display: flex; flex-direction: column; }
+    .header__brand-name {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--blue-dark);
+      line-height: 1.15;
+      letter-spacing: .01em;
+    }
+    .header__brand-sub {
+      font-family: var(--font-heading);
+      font-size: .7rem;
+      font-weight: 600;
+      color: var(--gold-dark);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .header__nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .header__nav a {
+      font-family: var(--font-heading);
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--blue-dark);
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      transition: background .2s, color .2s;
+    }
+    .header__nav a:hover { background: var(--off-white); color: var(--blue-light); }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      color: var(--blue-dark);
+      font-size: 1.4rem;
+    }
+
+    /* Mobile nav */
+    .mobile-nav {
+      display: none;
+      background: var(--white);
+      border-top: 2px solid var(--blue-dark);
+      padding: 16px 24px;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      font-family: var(--font-heading);
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--blue-dark);
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      text-transform: uppercase;
+      transition: background .2s;
+    }
+    .mobile-nav a:hover { background: var(--off-white); }
+
+    /* ======================================================
+       HERO
+    ====================================================== */
+    .hero {
+      background:
+        linear-gradient(135deg, rgba(0,59,113,.92) 0%, rgba(0,80,153,.85) 55%, rgba(0,112,192,.70) 100%),
+        url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1400&q=80') center/cover no-repeat;
+      color: var(--white);
+      padding: 80px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 110%, rgba(245,166,35,.18) 0%, transparent 65%);
+    }
+    .hero__inner {
+      max-width: 860px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 30px;
+      padding: 5px 16px;
+      font-family: var(--font-heading);
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero__eyebrow i { color: var(--gold); }
+    .hero__title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.9rem, 5vw, 3rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+    .hero__title span { color: var(--gold); }
+    .hero__subtitle {
+      font-family: var(--font-heading);
+      font-size: clamp(.95rem, 2.5vw, 1.2rem);
+      font-weight: 500;
+      opacity: .88;
+      margin-bottom: 24px;
+      letter-spacing: .02em;
+    }
+    .hero__desc {
+      font-size: .97rem;
+      opacity: .82;
+      max-width: 640px;
+      margin: 0 auto 36px;
+    }
+    .hero__cta-group {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: .82rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      padding: 12px 26px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all .25s ease;
+      border: 2px solid transparent;
+    }
+    .btn-gold {
+      background: var(--gold);
+      color: var(--blue-dark);
+      border-color: var(--gold);
+    }
+    .btn-gold:hover {
+      background: var(--gold-dark);
+      border-color: var(--gold-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(245,166,35,.40);
+    }
+    .btn-outline-white {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255,255,255,.6);
+    }
+    .btn-outline-white:hover {
+      background: rgba(255,255,255,.12);
+      border-color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* Hero stats strip */
+    .hero__stats {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+      margin-top: 52px;
+    }
+    .hero__stat {
+      padding: 18px 32px;
+      border-right: 1px solid rgba(255,255,255,.2);
+      text-align: center;
+    }
+    .hero__stat:last-child { border-right: none; }
+    .hero__stat-number {
+      font-family: var(--font-heading);
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .hero__stat-label {
+      font-size: .72rem;
+      opacity: .75;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      margin-top: 4px;
+    }
+
+    /* ======================================================
+       SECTION TITLES
+    ====================================================== */
+    .section { padding: 64px 24px; }
+    .section--white { background: var(--white); }
+    .section--gray  { background: var(--off-white); }
+    .section--blue  { background: var(--blue-dark); color: var(--white); }
+
+    .section__inner { max-width: 1200px; margin: 0 auto; }
+
+    .section-header { text-align: center; margin-bottom: 48px; }
+    .section-header__label {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--blue-dark);
+      font-family: var(--font-heading);
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+    .section-header__title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 800;
+      color: var(--blue-dark);
+      line-height: 1.2;
+    }
+    .section--blue .section-header__title { color: var(--white); }
+    .section-header__desc {
+      margin-top: 12px;
+      font-size: .95rem;
+      color: var(--gray-mid);
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .section--blue .section-header__desc { color: rgba(255,255,255,.70); }
+
+    /* ======================================================
+       RESOURCES CARDS (main section)
+    ====================================================== */
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+    }
+
+    .resource-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform .3s ease, box-shadow .3s ease;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--gray-light);
+    }
+    .resource-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .resource-card__header {
+      padding: 28px 28px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .resource-card__header::before {
+      content: '';
+      position: absolute;
+      top: -30px; right: -30px;
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      opacity: .08;
+    }
+
+    .card--adamed     .resource-card__header { background: linear-gradient(135deg, #003B71 0%, #005099 100%); }
+    .card--enamed     .resource-card__header { background: linear-gradient(135deg, #1A5276 0%, #2E86C1 100%); }
+    .card--simulador  .resource-card__header { background: linear-gradient(135deg, #145A32 0%, #1E8449 100%); }
+
+    .card--adamed    .resource-card__header::before { background: var(--white); }
+    .card--enamed    .resource-card__header::before { background: var(--gold); }
+    .card--simulador .resource-card__header::before { background: var(--white); }
+
+    .resource-card__icon-wrap {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      font-size: 1.5rem;
+      color: var(--white);
+    }
+    .resource-card__tag {
+      display: inline-block;
+      background: rgba(255,255,255,.18);
+      color: rgba(255,255,255,.9);
+      font-family: var(--font-heading);
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+    }
+    .resource-card__title {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.2;
+    }
+
+    .resource-card__body {
+      padding: 22px 28px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .resource-card__desc {
+      font-size: .9rem;
+      color: var(--text-body);
+      line-height: 1.65;
+      flex: 1;
+    }
+    .resource-card__features {
+      list-style: none;
+      margin: 14px 0 20px;
+    }
+    .resource-card__features li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .83rem;
+      color: var(--gray-dark);
+      padding: 4px 0;
+    }
+    .resource-card__features li i {
+      font-size: .7rem;
+      width: 16px;
+      text-align: center;
+    }
+    .card--adamed    .resource-card__features li i { color: var(--blue-mid); }
+    .card--enamed    .resource-card__features li i { color: #2E86C1; }
+    .card--simulador .resource-card__features li i { color: #1E8449; }
+
+    .resource-card__footer {
+      padding: 0 28px 28px;
+    }
+    .resource-card__btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 13px 20px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-heading);
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      color: var(--white);
+      transition: all .25s;
+      border: none;
+      cursor: pointer;
+    }
+    .card--adamed    .resource-card__btn { background: var(--blue-dark); }
+    .card--enamed    .resource-card__btn { background: #2E86C1; }
+    .card--simulador .resource-card__btn { background: #1E8449; }
+
+    .card--adamed    .resource-card__btn:hover { background: var(--blue-light); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,59,113,.35); }
+    .card--enamed    .resource-card__btn:hover { background: #1A5276; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(46,134,193,.35); }
+    .card--simulador .resource-card__btn:hover { background: #145A32; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(30,132,73,.35); }
+
+    /* ======================================================
+       INFO STRIP
+    ====================================================== */
+    .info-strip {
+      background: var(--blue-dark);
+      padding: 48px 24px;
+    }
+    .info-strip__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+    }
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 20px;
+      border-radius: var(--radius-md);
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.09);
+      transition: background .25s;
+    }
+    .info-item:hover { background: rgba(255,255,255,.10); }
+    .info-item__icon {
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      background: rgba(245,166,35,.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .info-item__label {
+      font-family: var(--font-heading);
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 3px;
+    }
+    .info-item__value {
+      font-family: var(--font-heading);
+      font-size: .9rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.3;
+    }
+
+    /* ======================================================
+       ABOUT SECTION
+    ====================================================== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
+
+    .about__img-wrap {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+    .about__img-wrap img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+    }
+    .about__img-badge {
+      position: absolute;
+      bottom: 20px; left: 20px;
+      background: var(--blue-dark);
+      color: var(--white);
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-heading);
+      font-size: .75rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .about__img-badge i { color: var(--gold); }
+    .about__content {}
+    .about__label {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--blue-dark);
+      font-family: var(--font-heading);
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+    }
+    .about__title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+      font-weight: 800;
+      color: var(--blue-dark);
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .about__text {
+      font-size: .93rem;
+      line-height: 1.75;
+      color: var(--text-body);
+      margin-bottom: 20px;
+    }
+    .about__checklist { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .about__checklist li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .88rem;
+      color: var(--gray-dark);
+    }
+    .about__checklist li i {
+      color: var(--green-med);
+      font-size: .9rem;
+    }
+
+    /* ======================================================
+       QUICK LINKS SECTION
+    ====================================================== */
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+    }
+    .quick-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 24px 16px;
+      background: var(--white);
+      border: 1px solid var(--gray-light);
+      border-radius: var(--radius-md);
+      text-align: center;
+      transition: all .25s;
+    }
+    .quick-link:hover {
+      border-color: var(--blue-dark);
+      background: var(--blue-dark);
+      color: var(--white);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+    .quick-link__icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: var(--off-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: var(--blue-dark);
+      transition: all .25s;
+    }
+    .quick-link:hover .quick-link__icon {
+      background: rgba(255,255,255,.15);
+      color: var(--gold);
+    }
+    .quick-link__label {
+      font-family: var(--font-heading);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--blue-dark);
+      transition: color .25s;
+      line-height: 1.3;
+    }
+    .quick-link:hover .quick-link__label { color: var(--white); }
+
+    /* ======================================================
+       FOOTER
+    ====================================================== */
+    .footer {
+      background: #001F3F;
+      color: rgba(255,255,255,.75);
+      padding: 48px 24px 0;
+    }
+    .footer__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    @media (max-width: 768px) { .footer__grid { grid-template-columns: 1fr; } }
+
+    .footer__brand { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px; }
+    .footer__brand-logo { height: 48px; width: auto; filter: brightness(0) invert(1); opacity: .85; }
+    .footer__brand-title {
+      font-family: var(--font-heading);
+      font-size: .95rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.15;
+    }
+    .footer__brand-sub {
+      font-family: var(--font-heading);
+      font-size: .65rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: .10em;
+      text-transform: uppercase;
+    }
+    .footer__desc {
+      font-size: .82rem;
+      line-height: 1.7;
+      max-width: 300px;
+    }
+    .footer__social {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .footer__social a {
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      background: rgba(255,255,255,.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .9rem;
+      color: rgba(255,255,255,.65);
+      transition: all .2s;
+    }
+    .footer__social a:hover { background: var(--gold); color: var(--blue-dark); }
+
+    .footer__col-title {
+      font-family: var(--font-heading);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .footer__links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer__links a {
+      font-size: .83rem;
+      color: rgba(255,255,255,.65);
+      transition: color .2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .footer__links a:hover { color: var(--gold); }
+    .footer__links a i { font-size: .6rem; }
+
+    .footer__bottom {
+      padding: 18px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .footer__bottom p {
+      font-size: .76rem;
+      color: rgba(255,255,255,.40);
+    }
+    .footer__bottom strong { color: rgba(255,255,255,.65); }
+
+    /* ======================================================
+       ANNOUNCEMENT BANNER
+    ====================================================== */
+    .announce {
+      background: linear-gradient(90deg, var(--gold-dark) 0%, var(--gold) 100%);
+      padding: 10px 24px;
+      text-align: center;
+    }
+    .announce__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .announce p {
+      font-family: var(--font-heading);
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--blue-dark);
+      letter-spacing: .02em;
+    }
+    .announce a {
+      font-family: var(--font-heading);
+      font-size: .75rem;
+      font-weight: 800;
+      color: var(--blue-dark);
+      border-bottom: 2px solid var(--blue-dark);
+      opacity: .85;
+    }
+    .announce a:hover { opacity: 1; }
+
+    /* ======================================================
+       RESPONSIVE
+    ====================================================== */
+    @media (max-width: 900px) {
+      .header__nav { display: none; }
+      .hamburger { display: block; }
+    }
+
+    @media (max-width: 640px) {
+      .hero { padding: 56px 20px; }
+      .hero__stats { gap: 0; }
+      .hero__stat { padding: 14px 18px; border-right: none; border-bottom: 1px solid rgba(255,255,255,.2); }
+      .hero__stat:last-child { border-bottom: none; }
+      .section { padding: 48px 20px; }
+      .resources-grid { grid-template-columns: 1fr; }
+      .topbar__links { display: none; }
+    }
+
+    /* ======================================================
+       SCROLL ANIMATIONS
+    ====================================================== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Accent divider */
+    .divider {
+      width: 56px; height: 4px;
+      background: var(--gold);
+      border-radius: 4px;
+      margin: 12px auto 0;
+    }
+    .divider--left { margin: 12px 0 0; }
+  </style>
+</head>
+<body>
+
+  <!-- ── ANNOUNCEMENT BANNER ───────────────────────────── -->
+  <div class="announce">
+    <div class="announce__inner">
+      <i class="fa-solid fa-circle-info" style="color:var(--blue-dark);font-size:.85rem;"></i>
+      <p>Portal Acadêmico do Curso de Medicina PUC Minas – Campus Betim &nbsp;|&nbsp; Acesse os recursos exclusivos abaixo</p>
+      <a href="https://www.pucminas.br/campus/betim/Paginas/default.aspx" target="_blank">Site Oficial →</a>
+    </div>
+  </div>
+
+  <!-- ── TOP BAR ───────────────────────────────────────── -->
+  <div class="topbar">
+    <div class="topbar__inner">
+      <div class="topbar__links">
+        <a href="https://www.pucminas.br/" target="_blank"><i class="fa-solid fa-house fa-xs"></i> Portal PUC Minas</a>
+        <a href="https://www.pucminas.br/campus/betim/Paginas/default.aspx" target="_blank">Campus Betim</a>
+        <a href="https://www.pucminas.br/medicina/Paginas/default.aspx" target="_blank">Medicina PUC Minas</a>
+      </div>
+      <div class="topbar__right">
+        <span class="topbar__badge">2026</span>
+        <span>Betim · MG</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── HEADER ────────────────────────────────────────── -->
+  <header class="header">
+    <div class="header__inner">
+      <a class="header__brand" href="#">
+        <img
+          class="header__logo-img"
+          src="https://www.pucminas.br/Imagens/logo-puc-minas.png"
+          alt="Brasão PUC Minas"
+          onerror="this.style.display='none'"
+        />
+        <div class="header__brand-text">
+          <span class="header__brand-name">PUC Minas</span>
+          <span class="header__brand-sub">Medicina · Betim</span>
+        </div>
+      </a>
+
+      <nav class="header__nav" aria-label="Navegação principal">
+        <a href="#recursos">Recursos</a>
+        <a href="#sobre">Sobre o Curso</a>
+        <a href="#acesso-rapido">Acesso Rápido</a>
+        <a href="https://www.pucminas.br/campus/betim/ensino/graduacao/Paginas/Medicina.aspx?curso=233" target="_blank">Grade Curricular</a>
+      </nav>
+
+      <button class="hamburger" id="hambBtn" aria-label="Abrir menu" aria-expanded="false">
+        <i class="fa-solid fa-bars" id="hambIcon"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Nav -->
+    <nav class="mobile-nav" id="mobileNav" aria-label="Menu móvel">
+      <a href="#recursos">Recursos</a>
+      <a href="#sobre">Sobre o Curso</a>
+      <a href="#acesso-rapido">Acesso Rápido</a>
+      <a href="https://www.pucminas.br/campus/betim/ensino/graduacao/Paginas/Medicina.aspx?curso=233" target="_blank">Grade Curricular</a>
+    </nav>
+  </header>
+
+  <!-- ── HERO ──────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero__inner">
+      <div class="hero__eyebrow">
+        <i class="fa-solid fa-stethoscope"></i>
+        Pontifícia Universidade Católica de Minas Gerais
+      </div>
+      <h1 class="hero__title">
+        Curso de <span>Medicina</span><br/>PUC Minas – Betim
+      </h1>
+      <p class="hero__subtitle">Formando médicos com excelência, humanidade e responsabilidade social</p>
+      <p class="hero__desc">
+        Acesse ferramentas exclusivas de apoio acadêmico, dashboards de desempenho e simuladores
+        para potencializar sua jornada na medicina.
+      </p>
+      <div class="hero__cta-group">
+        <a class="btn btn-gold" href="#recursos">
+          <i class="fa-solid fa-chart-bar"></i>
+          Ver Recursos
+        </a>
+        <a class="btn btn-outline-white" href="https://www.pucminas.br/campus/betim/ensino/graduacao/Paginas/Medicina.aspx?curso=233" target="_blank">
+          <i class="fa-solid fa-graduation-cap"></i>
+          Grade Curricular
+        </a>
+      </div>
+      <div class="hero__stats">
+        <div class="hero__stat">
+          <div class="hero__stat-number">12</div>
+          <div class="hero__stat-label">Períodos</div>
+        </div>
+        <div class="hero__stat">
+          <div class="hero__stat-number">Nota 5</div>
+          <div class="hero__stat-label">Avaliação MEC</div>
+        </div>
+        <div class="hero__stat">
+          <div class="hero__stat-number">INTEGRAL</div>
+          <div class="hero__stat-label">Turno</div>
+        </div>
+        <div class="hero__stat">
+          <div class="hero__stat-number">1962</div>
+          <div class="hero__stat-label">Fundação PUC Minas</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── INFO STRIP ─────────────────────────────────────── -->
+  <div class="info-strip">
+    <div class="info-strip__inner">
+      <div class="info-item">
+        <div class="info-item__icon"><i class="fa-solid fa-location-dot"></i></div>
+        <div>
+          <div class="info-item__label">Localização</div>
+          <div class="info-item__value">Campus Betim<br/>Região Metropolitana de BH</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-item__icon"><i class="fa-solid fa-clock"></i></div>
+        <div>
+          <div class="info-item__label">Turno</div>
+          <div class="info-item__value">Integral<br/>Presencial</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-item__icon"><i class="fa-solid fa-calendar-days"></i></div>
+        <div>
+          <div class="info-item__label">Duração</div>
+          <div class="info-item__value">12 Períodos<br/>6 Anos</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-item__icon"><i class="fa-solid fa-award"></i></div>
+        <div>
+          <div class="info-item__label">Avaliação</div>
+          <div class="info-item__value">Nota Máxima MEC<br/>Conceito 5</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-item__icon"><i class="fa-solid fa-hospital"></i></div>
+        <div>
+          <div class="info-item__label">Internato</div>
+          <div class="info-item__value">Hospitais parceiros<br/>em Betim e região</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── RECURSOS ACADÊMICOS ───────────────────────────── -->
+  <section class="section section--gray" id="recursos">
+    <div class="section__inner">
+      <div class="section-header fade-up">
+        <span class="section-header__label">Ferramentas Exclusivas</span>
+        <h2 class="section-header__title">Recursos Acadêmicos &amp; Dashboards</h2>
+        <div class="divider"></div>
+        <p class="section-header__desc">
+          Acesse plataformas de análise de desempenho, dados do ENEM de Medicina e simuladores
+          interativos para apoiar sua formação médica.
+        </p>
+      </div>
+
+      <div class="resources-grid">
+
+        <!-- CARD 1 — ADAMED -->
+        <article class="resource-card card--adamed fade-up">
+          <div class="resource-card__header">
+            <div class="resource-card__icon-wrap">
+              <i class="fa-solid fa-chart-pie"></i>
+            </div>
+            <span class="resource-card__tag">Dashboard · Power BI</span>
+            <h3 class="resource-card__title">ADAMED</h3>
+          </div>
+          <div class="resource-card__body">
+            <p class="resource-card__desc">
+              Dashboard interativo com indicadores de desempenho acadêmico e análises estatísticas
+              do programa ADAMED para o curso de medicina.
+            </p>
+            <ul class="resource-card__features">
+              <li><i class="fa-solid fa-circle-check"></i> Indicadores de desempenho acadêmico</li>
+              <li><i class="fa-solid fa-circle-check"></i> Análises comparativas por turma</li>
+              <li><i class="fa-solid fa-circle-check"></i> Visualizações interativas Power BI</li>
+              <li><i class="fa-solid fa-circle-check"></i> Dados atualizados em tempo real</li>
+            </ul>
+          </div>
+          <div class="resource-card__footer">
+            <a
+              href="https://app.powerbi.com/view?r=eyJrIjoiZmYwNjMwOTAtNmEwOS00Y2RjLWE2NmUtZjRkNjk1ZTRiMzNlIiwidCI6IjE0Y2JkNWE3LWVjOTQtNDZiYS1iMzE0LWNjMGZjOTcyYTE2MSIsImMiOjh9"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="resource-card__btn"
+            >
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              Acessar Dashboard
+            </a>
+          </div>
+        </article>
+
+        <!-- CARD 2 — ENAMED BRASIL 2025 -->
+        <article class="resource-card card--enamed fade-up">
+          <div class="resource-card__header">
+            <div class="resource-card__icon-wrap">
+              <i class="fa-solid fa-microscope"></i>
+            </div>
+            <span class="resource-card__tag">Análise · Microdados</span>
+            <h3 class="resource-card__title">ENAMED Brasil 2025</h3>
+          </div>
+          <div class="resource-card__body">
+            <p class="resource-card__desc">
+              Portal de análise dos microdados do ENAMED Brasil 2025, com informações
+              estatísticas, comparativos nacionais e indicadores de desempenho das escolas médicas do país.
+            </p>
+            <ul class="resource-card__features">
+              <li><i class="fa-solid fa-circle-check"></i> Microdados ENAMED 2025</li>
+              <li><i class="fa-solid fa-circle-check"></i> Comparativo entre IES de medicina</li>
+              <li><i class="fa-solid fa-circle-check"></i> Dados nacionais e regionais</li>
+              <li><i class="fa-solid fa-circle-check"></i> Análise de distribuição de notas</li>
+            </ul>
+          </div>
+          <div class="resource-card__footer">
+            <a
+              href="https://klebersouza.github.io/microdados_enamed_2025/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="resource-card__btn"
+            >
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              Acessar ENAMED 2025
+            </a>
+          </div>
+        </article>
+
+        <!-- CARD 3 — SIMULADOR ADAMED -->
+        <article class="resource-card card--simulador fade-up">
+          <div class="resource-card__header">
+            <div class="resource-card__icon-wrap">
+              <i class="fa-solid fa-flask-vial"></i>
+            </div>
+            <span class="resource-card__tag">Simulador · Power BI</span>
+            <h3 class="resource-card__title">Simulador ADAMED</h3>
+          </div>
+          <div class="resource-card__body">
+            <p class="resource-card__desc">
+              Simulador interativo desenvolvido em Power BI para auxiliar estudantes de medicina
+              na preparação para avaliações e no acompanhamento de métricas de aprendizado.
+            </p>
+            <ul class="resource-card__features">
+              <li><i class="fa-solid fa-circle-check"></i> Simulação de cenários clínicos</li>
+              <li><i class="fa-solid fa-circle-check"></i> Métricas de aprendizado individual</li>
+              <li><i class="fa-solid fa-circle-check"></i> Interface interativa Power BI</li>
+              <li><i class="fa-solid fa-circle-check"></i> Preparação para avaliações</li>
+            </ul>
+          </div>
+          <div class="resource-card__footer">
+            <a
+              href="https://app.powerbi.com/view?r=eyJrIjoiNGYxYjA5MjYtMjVhZi00NDIwLWE5MjItOTIwNDRiMDA0NzhjIiwidCI6IjE0Y2JkNWE3LWVjOTQtNDZiYS1iMzE0LWNjMGZjOTcyYTE2MSIsImMiOjh9"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="resource-card__btn"
+            >
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              Acessar Simulador
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SOBRE O CURSO ──────────────────────────────────── -->
+  <section class="section section--white" id="sobre">
+    <div class="section__inner">
+      <div class="about-grid">
+        <div class="about__img-wrap fade-up">
+          <img
+            src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80"
+            alt="Estudantes de medicina em laboratório"
+            loading="lazy"
+          />
+          <div class="about__img-badge">
+            <i class="fa-solid fa-star"></i>
+            Nota Máxima MEC – Conceito 5
+          </div>
+        </div>
+        <div class="about__content fade-up">
+          <span class="about__label">Sobre o Curso</span>
+          <h2 class="about__title">Formação Médica de Excelência no Campus Betim</h2>
+          <p class="about__text">
+            O Curso de Medicina da PUC Minas em Betim prepara profissionais não apenas para
+            o conhecimento dos conceitos e das técnicas clínicas e cirúrgicas, mas também para
+            o cuidado integral do ser humano, com visão humanística e responsabilidade social.
+          </p>
+          <p class="about__text">
+            Com infraestrutura moderna, corpo docente altamente qualificado e parcerias com
+            hospitais e unidades de saúde da região metropolitana de Belo Horizonte, o curso
+            oferece uma formação completa e diferenciada.
+          </p>
+          <ul class="about__checklist">
+            <li><i class="fa-solid fa-circle-check"></i> 12 períodos – Turno Integral presencial</li>
+            <li><i class="fa-solid fa-circle-check"></i> Internato em hospitais parceiros da região</li>
+            <li><i class="fa-solid fa-circle-check"></i> Práticas na comunidade desde o 1.º período</li>
+            <li><i class="fa-solid fa-circle-check"></i> Laboratórios de habilidades e simulação clínica</li>
+            <li><i class="fa-solid fa-circle-check"></i> Programa de pesquisa e extensão universitária</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ACESSO RÁPIDO ──────────────────────────────────── -->
+  <section class="section section--gray" id="acesso-rapido">
+    <div class="section__inner">
+      <div class="section-header fade-up">
+        <span class="section-header__label">Navegação</span>
+        <h2 class="section-header__title">Acesso Rápido</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="quick-grid fade-up">
+        <a class="quick-link" href="https://portaldoaluno.pucminas.br/" target="_blank" rel="noopener">
+          <div class="quick-link__icon"><i class="fa-solid fa-user-graduate"></i></div>
+          <span class="quick-link__label">Portal do Aluno</span>
+        </a>
+        <a class="quick-link" href="https://pucminas.instructure.com/" target="_blank" rel="noopener">
+          <div class="quick-link__icon"><i class="fa-solid fa-book-open"></i></div>
+          <span class="quick-link__label">Canvas LMS</span>
+        </a>
+        <a class="quick-link" href="https://www.pucminas.br/biblioteca/Paginas/default.aspx" target="_blank" rel="noopener">
+          <div class="quick-link__icon"><i class="fa-solid fa-building-columns"></i></div>
+          <span class="quick-link__label">Biblioteca</span>
+        </a>
+        <a class="quick-link" href="https://www.pucminas.br/campus/betim/ensino/graduacao/Paginas/Medicina.aspx?curso=233" target="_blank" rel="noopener">
+          <div class="quick-link__icon"><i class="fa-solid fa-list-check"></i></div>
+          <span class="quick-link__label">Grade Curricular</span>
+        </a>
+        <a class="quick-link" href="https://www.pucminas.br/medicina/Paginas/default.aspx" target="_blank" rel="noopener">
+          <div class="quick-link__icon"><i class="fa-solid fa-stethoscope"></i></div>
+          <span class="quick-link__label">Medicina PUC Minas</span>
+        </a>
+        <a class="quick-link" href="https://www.pucminas.br/campus/betim/Paginas/default.aspx" target="_blank" rel="noopener">
+          <div class="quick-link__icon"><i class="fa-solid fa-map-location-dot"></i></div>
+          <span class="quick-link__label">Campus Betim</span>
+        </a>
+        <a class="quick-link" href="https://app.powerbi.com/view?r=eyJrIjoiZmYwNjMwOTAtNmEwOS00Y2RjLWE2NmUtZjRkNjk1ZTRiMzNlIiwidCI6IjE0Y2JkNWE3LWVjOTQtNDZiYS1iMzE0LWNjMGZjOTcyYTE2MSIsImMiOjh9" target="_blank" rel="noopener">
+          <div class="quick-link__icon"><i class="fa-solid fa-chart-pie"></i></div>
+          <span class="quick-link__label">Dashboard ADAMED</span>
+        </a>
+        <a class="quick-link" href="https://klebersouza.github.io/microdados_enamed_2025/" target="_blank" rel="noopener">
+          <div class="quick-link__icon"><i class="fa-solid fa-microscope"></i></div>
+          <span class="quick-link__label">ENAMED 2025</span>
+        </a>
+        <a class="quick-link" href="https://app.powerbi.com/view?r=eyJrIjoiNGYxYjA5MjYtMjVhZi00NDIwLWE5MjItOTIwNDRiMDA0NzhjIiwidCI6IjE0Y2JkNWE3LWVjOTQtNDZiYS1iMzE0LWNjMGZjOTcyYTE2MSIsImMiOjh9" target="_blank" rel="noopener">
+          <div class="quick-link__icon"><i class="fa-solid fa-flask-vial"></i></div>
+          <span class="quick-link__label">Simulador ADAMED</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__grid">
+
+        <!-- Col 1 -->
+        <div>
+          <div class="footer__brand">
+            <img
+              class="footer__brand-logo"
+              src="https://www.pucminas.br/Imagens/logo-puc-minas.png"
+              alt="PUC Minas"
+              onerror="this.style.display='none'"
+            />
+            <div>
+              <div class="footer__brand-title">PUC Minas</div>
+              <div class="footer__brand-sub">Medicina · Betim</div>
+            </div>
+          </div>
+          <p class="footer__desc">
+            Pontifícia Universidade Católica de Minas Gerais – Campus Betim.
+            Formando médicos com excelência, humanidade e responsabilidade social
+            desde a fundação do campus.
+          </p>
+          <div class="footer__social">
+            <a href="https://www.instagram.com/medicinapucbetim/" target="_blank" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/PUCMinas" target="_blank" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://www.youtube.com/@PUCMinas" target="_blank" aria-label="YouTube">
+              <i class="fa-brands fa-youtube"></i>
+            </a>
+            <a href="https://www.linkedin.com/school/puc-minas/" target="_blank" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2 -->
+        <div>
+          <h3 class="footer__col-title">Recursos</h3>
+          <ul class="footer__links">
+            <li>
+              <a href="https://app.powerbi.com/view?r=eyJrIjoiZmYwNjMwOTAtNmEwOS00Y2RjLWE2NmUtZjRkNjk1ZTRiMzNlIiwidCI6IjE0Y2JkNWE3LWVjOTQtNDZiYS1iMzE0LWNjMGZjOTcyYTE2MSIsImMiOjh9" target="_blank">
+                <i class="fa-solid fa-chevron-right"></i> Dashboard ADAMED
+              </a>
+            </li>
+            <li>
+              <a href="https://klebersouza.github.io/microdados_enamed_2025/" target="_blank">
+                <i class="fa-solid fa-chevron-right"></i> ENAMED Brasil 2025
+              </a>
+            </li>
+            <li>
+              <a href="https://app.powerbi.com/view?r=eyJrIjoiNGYxYjA5MjYtMjVhZi00NDIwLWE5MjItOTIwNDRiMDA0NzhjIiwidCI6IjE0Y2JkNWE3LWVjOTQtNDZiYS1iMzE0LWNjMGZjOTcyYTE2MSIsImMiOjh9" target="_blank">
+                <i class="fa-solid fa-chevron-right"></i> Simulador ADAMED
+              </a>
+            </li>
+            <li>
+              <a href="https://portaldoaluno.pucminas.br/" target="_blank">
+                <i class="fa-solid fa-chevron-right"></i> Portal do Aluno
+              </a>
+            </li>
+            <li>
+              <a href="https://pucminas.instructure.com/" target="_blank">
+                <i class="fa-solid fa-chevron-right"></i> Ambiente Virtual (Canvas)
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Col 3 -->
+        <div>
+          <h3 class="footer__col-title">Institucional</h3>
+          <ul class="footer__links">
+            <li>
+              <a href="https://www.pucminas.br/campus/betim/ensino/graduacao/Paginas/Medicina.aspx?curso=233" target="_blank">
+                <i class="fa-solid fa-chevron-right"></i> Grade Curricular
+              </a>
+            </li>
+            <li>
+              <a href="https://www.pucminas.br/medicina/Paginas/default.aspx" target="_blank">
+                <i class="fa-solid fa-chevron-right"></i> Medicina PUC Minas
+              </a>
+            </li>
+            <li>
+              <a href="https://www.pucminas.br/campus/betim/Paginas/default.aspx" target="_blank">
+                <i class="fa-solid fa-chevron-right"></i> Campus Betim
+              </a>
+            </li>
+            <li>
+              <a href="https://www.pucminas.br/processoseletivo/Paginas/default.aspx" target="_blank">
+                <i class="fa-solid fa-chevron-right"></i> Processo Seletivo
+              </a>
+            </li>
+            <li>
+              <a href="https://www.pucminas.br/" target="_blank">
+                <i class="fa-solid fa-chevron-right"></i> Portal PUC Minas
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p>© 2026 <strong>PUC Minas – Campus Betim</strong>. Todos os direitos reservados.</p>
+        <p>Pontifícia Universidade Católica de Minas Gerais</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── JAVASCRIPT ────────────────────────────────────── -->
+  <script>
+    // Hamburger menu toggle
+    const hambBtn  = document.getElementById('hambBtn');
+    const hambIcon = document.getElementById('hambIcon');
+    const mobileNav = document.getElementById('mobileNav');
+
+    hambBtn.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('open');
+      hambIcon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+      hambBtn.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close mobile menu on link click
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        hambIcon.className = 'fa-solid fa-bars';
+        hambBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', e => {
+        const target = document.querySelector(anchor.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Fade-up scroll animation (IntersectionObserver)
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          // Stagger siblings
+          const siblings = [...entry.target.parentElement.children].filter(c => c.classList.contains('fade-up'));
+          const idx = siblings.indexOf(entry.target);
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, idx * 100);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    fadeEls.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
