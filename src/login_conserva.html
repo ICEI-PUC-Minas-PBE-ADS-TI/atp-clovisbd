@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel ICM - Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header-container">
+        <div class="top-row">
+            <div class="sub-title">Assessoria de Gestão Estratégica</div>
+            <div class="logo">
+                <img src="https://www.der.mg.gov.br/images/1-diretorias/Comunicacao/logomarca-der-edificacoes-cor-reduzida.png"
+                    alt="DER-MG">
+            </div>
+        </div>
+
+        <div class="title-section">
+            <h1 class="main-title">Painel ICM - Acesso aos Lotes</h1>
+            <div class="divider-line"></div>
+        </div>
+    </header>
+
+
+
+    <h2>Login</h2>
+
+    <div id="msg-erro" class="alert error">Usuário ou senha incorretos.</div>
+    <div id="msg-sucesso" class="alert success">Acesso liberado! Redirecionando...</div>
+
+
+    <div class="input-group">
+        <label for="usuario">Usuário</label>
+        <input type="text" id="usuario" placeholder="Usuário">
+    </div>
+    <div class="input-group">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" placeholder="Senha">
+    </div>
+    <br><br>
+
+    <button onclick="login()">Entrar</button>
+
+    <p id="erro" style="color:red"></p>
+
+    <br><br>
+
+    <iframe id="frame" width="100%" height="600"></iframe>
+
+
+
+    <script>
+
+        function login() {
+
+            const usuarioDigitado = document.getElementById("usuario").value
+            const senhaDigitada = document.getElementById("senha").value
+
+            const usuarios = JSON.parse(localStorage.getItem("usuarios")) || []
+
+            const usuarioEncontrado = usuarios.find(u =>
+                u.usuario === usuarioDigitado && u.senha === senhaDigitada
+            )
+
+            if (usuarioEncontrado) {
+
+                document.getElementById("frame").src = usuarioEncontrado.link
+                document.getElementById("erro").innerText = ""
+
+            } else {
+
+                document.getElementById("erro").innerText = "Usuário ou senha incorretos"
+
+            }
+
+        }
+
+    </script>
+</body>
+
+</html>

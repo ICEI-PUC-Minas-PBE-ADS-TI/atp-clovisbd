@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Cadastro de Usuário</title>
+</head>
+
+<body>
+
+<h2>Cadastro de Usuário</h2>
+
+<input type="text" id="usuario" placeholder="Usuário">
+<br><br>
+
+<input type="password" id="senha" placeholder="Senha">
+<br><br>
+
+<input type="text" id="link" placeholder="Link que será aberto">
+<br><br>
+
+<button onclick="cadastrar()">Cadastrar</button>
+
+<p id="msg"></p>
+
+<script>
+
+function cadastrar(){
+
+const usuario = document.getElementById("usuario").value
+const senha = document.getElementById("senha").value
+const link = document.getElementById("link").value
+
+let usuarios = JSON.parse(localStorage.getItem("usuarios")) || []
+
+usuarios.push({
+usuario: usuario,
+senha: senha,
+link: link
+})
+
+localStorage.setItem("usuarios", JSON.stringify(usuarios))
+
+document.getElementById("msg").innerText = "Usuário cadastrado com sucesso!"
+
+}
+
+</script>
+
+</body>
+</html>
